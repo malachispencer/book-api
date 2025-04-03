@@ -60,11 +60,11 @@ Run Book API using your IDE or ```mvn spring-boot:run```.
 
 #### No exception handling
 
-Make a request to GET ```/v1/book/{bookId}``` endpoint with a bookId that does not exist.
+Make a request to ```GET /v1/book/{bookId}``` endpoint with a bookId that does not exist.
 
 #### Exception handling with a try-catch block
 
-Make a request to GET ```/v2/book/{bookId}``` endpoint with a bookId that does not exist.
+Make a request to ```GET /v2/book/{bookId}``` endpoint with a bookId that does not exist.
 
 #### Exception handling via a global exception handler
 
@@ -74,20 +74,20 @@ Un-comment the following line in application.properties.
 
 Re-run the service.
 
-Make a request to GET ```/v3/book/{bookId}``` endpoint with a bookId that does not exist.
+Make a request to ```GET /v5/book/{bookId}``` with a bookId that does not exist.
 
 ## Global Exception Handler Implementation
 
-The global exception handler implementation used here is compromised of several components, delineated in the table
+The global exception handler implementation used here is comprised of several components, delineated in the table
 below.
 
-| Class                  | Description                                                                                                  |
-|------------------------|--------------------------------------------------------------------------------------------------------------|
-| ErrorType              | An enum class featuring API error types in a standardised format.                                            |
-| ErrorDetails           | An error response body object based on a proposed RFC standard: https://www.rfc-editor.org/rfc/rfc9457.html. |
-| BaseException          | An abstract class which defines the contract for our custom exceptions.                                      |
-| GlobalExceptionHandler | All exceptions thrown during the request-response cycle of any controller are handled in this class.         |
-| BookControllerV5       | Our endpoints built in a global exception handler concordant manner i.e., no cumbersome try-catch blocks.    |
+| Class                  | Description                                                                                                                         |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| ErrorType              | An enum class featuring API error types in a standardised format.                                                                   |
+| ErrorDetails           | An error response body object based on a proposed RFC standard: https://www.rfc-editor.org/rfc/rfc9457.html.                        |
+| BaseException          | An abstract class which defines the contract for our custom exceptions. All custom exceptions should implement this abstract class. |
+| GlobalExceptionHandler | All exceptions thrown during the request-response cycle of any controller are handled in this class.                                |
+| BookControllerV5       | Our endpoints built in a global exception handler concordant manner i.e., no cumbersome try-catch blocks.                           |
 
 Some notable details to highlight regarding the implementation:
 * ErrorDetails populates itself with fields from custom exceptions. Custom exceptions are populated
